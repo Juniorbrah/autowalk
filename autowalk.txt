@@ -1,0 +1,35 @@
+local player = game.Players.LocalPlayer
+
+-- Enable auto walk
+local autoWalkEnabled = true
+
+-- Function to control the movement
+local function autoWalk()
+    local character = player.Character
+
+    if character then
+        local humanoid = character:WaitForChild("Humanoid")
+        humanoid.WalkSpeed = 16
+
+        -- Set movement direction (forward)
+        local moveDirection = Vector3.new(0, 0, -1)
+
+        while autoWalkEnabled do
+            humanoid:Move(moveDirection)
+            wait(0.1)
+        end
+    end
+end
+
+-- Start auto walk on script initialization
+autoWalk()
+
+-- Optional command to toggle auto walk
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch and input.UserInputState == Enum.UserInputState.Begin then
+        autoWalkEnabled = not autoWalkEnabled
+        if autoWalkEnabled then
+            autoWalk()
+        end
+    end
+end)
