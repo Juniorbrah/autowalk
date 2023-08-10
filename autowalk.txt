@@ -9,7 +9,7 @@ local function autoWalk()
 
     if character then
         local humanoid = character:WaitForChild("Humanoid")
-        humanoid.WalkSpeed = 16
+        humanoid.WalkSpeed = 20
 
         -- Set movement direction (forward)
         local moveDirection = Vector3.new(0, 0, -1)
